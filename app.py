@@ -14,19 +14,52 @@ st.set_page_config(
 # Estilo Lovecraftiano
 st.markdown("""
 <style>
-body {
-    background-color: #0a0a0a;
+/* Importar fuente gótica desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+/* Fondo oscuro abismal */
+body, .stApp {
+    background-color: #0a0a0a !important;
     color: #cfcfcf;
+    font-family: 'UnifrakturCook', cursive;
 }
-h1, h2, h3 {
-    color: #ff4b4b;
-    font-family: 'Courier New', monospace;
+
+/* Títulos con resplandor brutal */
+h1, h2, h3, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+    font-family: 'UnifrakturCook', cursive;
+    color: #ff4b4b !important;
+    text-shadow: 
+        0 0 5px #ff0000, 
+        0 0 10px #ff2222, 
+        0 0 20px #ff3333, 
+        0 0 40px #ff3333;
+    animation: glow 2s infinite alternate;
 }
-.st-emotion-cache-1v0mbdj {
-    background-color: #121212;
+
+/* Texto general con leve resplandor */
+.stMarkdown, .stText, p, div, span {
+    font-family: 'UnifrakturCook', cursive;
+    color: #d9d9d9 !important;
+    text-shadow: 0 0 3px #aa0000;
+}
+
+/* Barras laterales y paneles */
+.st-emotion-cache-1v0mbdj, .st-emotion-cache-1v0mbdj * {
+    background-color: #121212 !important;
+}
+
+/* Animación brutal del resplandor */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #ff0000, 0 0 10px #ff2222, 0 0 20px #ff3333;
+  }
+  to {
+    text-shadow: 0 0 20px #ff4444, 0 0 30px #ff6666, 0 0 40px #ff6666;
+  }
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 # Título principal
 st.title("📖 Necronomicón Lingüístico")
