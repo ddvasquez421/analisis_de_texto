@@ -11,22 +11,19 @@ st.set_page_config(
     layout="wide"
 )
 
-# Estilo Lovecraftiano
+# Estilo Lovecraftiano + Gótico Brutal
 st.markdown("""
 <style>
-/* Importar fuente gótica desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
 
-/* Fondo oscuro abismal */
-body, .stApp {
+html, body, .stApp {
     background-color: #0a0a0a !important;
-    color: #cfcfcf;
-    font-family: 'UnifrakturCook', cursive;
+    color: #dcdcdc !important;
+    font-family: 'UnifrakturCook', cursive !important;
 }
 
-/* Títulos con resplandor brutal */
-h1, h2, h3, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
-    font-family: 'UnifrakturCook', cursive;
+h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+    font-family: 'UnifrakturCook', cursive !important;
     color: #ff4b4b !important;
     text-shadow: 
         0 0 5px #ff0000, 
@@ -36,19 +33,25 @@ h1, h2, h3, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
     animation: glow 2s infinite alternate;
 }
 
-/* Texto general con leve resplandor */
-.stMarkdown, .stText, p, div, span {
-    font-family: 'UnifrakturCook', cursive;
-    color: #d9d9d9 !important;
+p, div, span, li, ul, ol, .stMarkdown, .stText, .st-bb, .st-cb {
+    font-family: 'UnifrakturCook', cursive !important;
+    color: #dcdcdc !important;
     text-shadow: 0 0 3px #aa0000;
 }
 
-/* Barras laterales y paneles */
-.st-emotion-cache-1v0mbdj, .st-emotion-cache-1v0mbdj * {
-    background-color: #121212 !important;
+input, textarea, button, .stButton button, .stTextInput input, .stSlider, .stSelectbox, .stNumberInput input {
+    font-family: 'UnifrakturCook', cursive !important;
+    color: #ffffff !important;
+    background-color: #1a1a1a !important;
+    border: 1px solid #ff0000 !important;
 }
 
-/* Animación brutal del resplandor */
+.st-emotion-cache-1v0mbdj, .st-emotion-cache-1v0mbdj * {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+    font-family: 'UnifrakturCook', cursive !important;
+}
+
 @keyframes glow {
   from {
     text-shadow: 0 0 5px #ff0000, 0 0 10px #ff2222, 0 0 20px #ff3333;
@@ -59,7 +62,6 @@ h1, h2, h3, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
 }
 </style>
 """, unsafe_allow_html=True)
-
 
 # Título principal
 st.title("📖 Necronomicón Lingüístico")
@@ -79,7 +81,7 @@ modo = st.sidebar.selectbox(
 
 # Función para contar palabras
 def contar_palabras(texto):
-    stop_words = set([...])  # OMITIDO por brevedad: pega tu lista completa aquí como ya la tienes
+    stop_words = set([...])  # Pega tu lista completa de stop words aquí
     palabras = re.findall(r'\b\w+\b', texto.lower())
     palabras_filtradas = [p for p in palabras if p not in stop_words and len(p) > 2]
     contador = {}
@@ -138,7 +140,7 @@ def crear_visualizaciones(resultados):
             st.warning(f"👁️ Altamente Subjetivo ({resultados['subjetividad']:.2f})")
         else:
             st.info(f"📜 Objetividad Dominante ({resultados['subjetividad']:.2f})")
-    
+
     with col2:
         st.subheader("📚 Palabras invocadas con mayor frecuencia")
         if resultados["contador_palabras"]:
@@ -154,7 +156,7 @@ def crear_visualizaciones(resultados):
         with col2:
             st.markdown("**Traducción (Lengua Prohibida):**")
             st.text(resultados["texto_traducido"])
-    
+
     st.subheader("🔍 Análisis de fragmentos invocados")
     if resultados["frases"]:
         for i, frase in enumerate(resultados["frases"][:10], 1):
